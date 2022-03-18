@@ -1,0 +1,6 @@
+{
+	"name": "IntegrationRuntime-SQLServerOnPremises",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
