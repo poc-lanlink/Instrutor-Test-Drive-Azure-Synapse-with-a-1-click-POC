@@ -1,0 +1,16 @@
+{
+	"name": "SqlServerOnPremise",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=LLK85N1FD020\\SQLEXPRESS;initial catalog=AdventureWorks2019;user id=synapse",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1MTUwMTYwNi1jYzM2LTRkMDMtODFkZS0zMTRhNWUzMTgzZjEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IntegrationRuntime-SQLServerOnPremises",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
