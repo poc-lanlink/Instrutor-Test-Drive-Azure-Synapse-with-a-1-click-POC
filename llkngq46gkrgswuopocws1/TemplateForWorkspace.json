@@ -7,6 +7,10 @@
 			"metadata": "Workspace name",
 			"defaultValue": "llkngq46gkrgswuopocws1"
 		},
+		"SqlServerOnPremise_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerOnPremise'"
+		},
 		"TripFaresSynapseAnalyticsLinkedService_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TripFaresSynapseAnalyticsLinkedService'"
@@ -1095,6 +1099,20 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/PowerBIWorkspaceDemo')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "PowerBIWorkspace",
+				"typeProperties": {
+					"workspaceID": "870f590c-0b9f-4259-89de-f596de3481db",
+					"tenantID": "6c115cc4-d107-4635-81cd-0617e0344073"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/PowerBIWorkspaceTripsFares')]",
 			"type": "Microsoft.Synapse/workspaces/linkedServices",
 			"apiVersion": "2019-06-01-preview",
@@ -1102,11 +1120,30 @@
 				"annotations": [],
 				"type": "PowerBIWorkspace",
 				"typeProperties": {
-					"workspaceID": "",
-					"tenantID": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+					"workspaceID": "af7903d6-a994-4796-89f3-a851998da647",
+					"tenantID": "6c115cc4-d107-4635-81cd-0617e0344073"
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SqlServerOnPremise')]",
+			"type": "Microsoft.Synapse/workspaces/linkedServices",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServerOnPremise_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "IntegrationRuntime-SQLServerOnPremises",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/IntegrationRuntime-SQLServerOnPremises')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/TripFaresDataLakeStorageLinkedService')]",
@@ -1283,6 +1320,16 @@
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/managedVirtualNetworks/default')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/IntegrationRuntime-SQLServerOnPremises')]",
+			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/tripFaresDataTransformations')]",

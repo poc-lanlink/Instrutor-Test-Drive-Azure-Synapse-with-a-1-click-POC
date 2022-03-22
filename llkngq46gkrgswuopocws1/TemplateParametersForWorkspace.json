@@ -5,6 +5,9 @@
 		"workspaceName": {
 			"value": "llkngq46gkrgswuopocws1"
 		},
+		"SqlServerOnPremise_connectionString": {
+			"value": ""
+		},
 		"TripFaresSynapseAnalyticsLinkedService_connectionString": {
 			"value": ""
 		},
