@@ -1,0 +1,6 @@
+{
+	"name": "IntegrationRuntimeTesteSEE",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
